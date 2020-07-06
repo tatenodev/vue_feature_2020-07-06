@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .warning {
+      background: red;
+      color: #fff;
+      font-weight: bold  ;
+    }
+    .warning2 {
+      background: blue;
+      color: #fff;
+      font-weight: bold  ;
+    }
+    .border_yellow {
+      border: double 10px yellow;
+    }
+    .border_pink {
+      border: double 10px pink;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="app">
+    <ul>
+      <li v-for="(person, index) in persons">
+        {{index + 1}}.{{person.name}}({{person.age}}歳)
+      </li>
+    </ul>
+    <!-- インクリメントメソッド -->
+    <div>
+      <div>{{counter}}</div>
+      <div><button @click="increment">plus2</button></div>
+    </div>
+    <!-- 画像入れ替えメソッド -->
+    <div>
+      <button @click="clickDogButton">Dog</button>
+      <button @click="clickCatButton">Cat</button>
+    </div>
+    <div>
+      <img :src="imagePath" alt="">
+    </div>
+    <!-- クラスのバインド -->
+    <div>
+      <!-- <div :class="[warningClass, borderClass]">warning</div> -->
+      <div :class="styleObject">warning</div>
+      <div>
+        <button @click="swichWarning">切り替える</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello World',
+        greeting: 'こんばんは',
+        persons: [
+          {
+            name: '鈴木',
+            age: '20',
+            address:{prefecture: '東京都', city: '新宿'}
+          },
+          {
+            name: '山田',
+            age: '25',
+            address:{prefecture: '東京都', city: '新宿'}
+          },
+          {
+            name: '吉田',
+            age: '30',
+            address:{prefecture: '東京都', city: '新宿'}
+          }
+        ],
+        counter: 0,
+        url: 'https://www.youtube.com/',
+        imagePath: "",
+        warningClass: 'warning',
+        borderClass: 'border_pink',
+        styleObject: {
+          warning: false
+        }
+      },
+      methods: {
+        increment: function(){
+          this.counter += 2;
+        },
+        clickDogButton: function(){
+          this.imagePath = "https://www.asahicom.jp/images15/fbox/edit5/201506/0615dog1_660.jpg"
+        },
+        clickCatButton: function(){
+          this.imagePath = "https://www.crank-in.net/img/db/1380725_650.jpg"
+        },
+        swichWarning: function() {
+          this.styleObject.warning = !this.styleObject.warning;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

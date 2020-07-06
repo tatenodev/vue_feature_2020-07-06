@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <h1>{{result}}</h1>
+    <!-- 敵の手 -->
+    <div>
+      <img :src="enemyHandImage" >
+    </div>
+    <!-- 自分の手 -->
+    <button @click="fight('goo')">ぐー</button>
+    <button @click="fight('choki')">ちょき</button>
+    <button @click="fight('paa')">ぱー</button>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        hand: ['goo', 'choki', 'paa'],
+        enemyHand: "",
+        enemyHandImage: "",
+        result: "いざ勝負！"
+      },
+      methods: {
+        fight: function(myHand){
+          // 敵の手をランダムで決める
+          // 0,1,2のいずれかの数字をランダムに生成する
+          let index = Math.floor(Math.random()*Math.floor(3));
+          this.enemyHand = this.hand[index]; 
+
+          // 画像の挿入
+          if(this.enemyHand === 'goo'){
+            this.enemyHandImage = "https://www.silhouette-illust.com/wp-content/uploads/2016/11/17390-300x300.jpg";
+          }else if(this.enemyHand === 'choki'){
+            this.enemyHandImage = "https://www.silhouette-illust.com/wp-content/uploads/2016/11/17430-300x300.jpg";
+          }else if(this.enemyhand === 'paa'){
+            this.enemyHandImage = "https://www.silhouette-illust.com/wp-content/uploads/2016/11/17431-300x300.jpg";
+          }
+
+          // 自分の手と敵の手を比較する
+          // --- 引き分け判定 ---
+          if(myHand === this.enemyHand){
+            console.log('引き分け');
+            this.result = '引き分け';
+          }
+          // --- 勝ち判定 ---
+          if(this.enemyHand === 'goo' && myHand === 'paa'){
+            console.log('勝ち');
+            this.result = '勝ち';
+          }
+          if(this.enemyHand === 'choki' && myHand === 'goo'){
+            console.log('勝ち');
+            this.result = '勝ち';
+          }
+          if(this.enemyHand === 'paa' && myHand === 'choki'){
+            console.log('勝ち');
+            this.result = '勝ち';
+          }
+
+          // --- 負け判定 ---
+          if(this.enemyHand === 'goo' && myHand === 'choki'){
+            console.log('負け...');
+            this.result = '負け...';
+          }
+          if(this.enemyHand === 'choki' && myHand === 'paa'){
+            console.log('負け...');
+            this.result = '負け...';
+          }
+          if(this.enemyHand === 'paa' && myHand === 'goo'){
+            console.log('負け...');
+            this.result = '負け...';
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

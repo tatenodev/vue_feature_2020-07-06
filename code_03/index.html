@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <h2>text</h2>
+      <input type="text" v-model="user">
+      <div>{{user}}</div>
+    </div>
+    <div>
+      <h2>textarea</h2>
+      <textarea v-model="article"></textarea>
+      <pre>{{article}}</pre>
+    </div>
+    <div>
+      <h2>checkbox</h2>
+      <input type="checkbox" v-model="agree">
+      <div>{{agree}}</div>
+    </div>
+    <div>
+      <h2>checkbox2</h2>
+      <input type="checkbox" v-model="agree2" value="音楽">音楽<br>
+      <input type="checkbox" v-model="agree2" value="スポーツ">スポーツ<br>
+      <input type="checkbox" v-model="agree2" value="映画">映画
+      <div>{{agree2}}</div>
+    </div>
+    <div>
+      <h2>radio</h2>
+      <input type="radio" v-model="hobby" value="音楽">音楽<br>
+      <input type="radio" v-model="hobby" value="スポーツ">スポーツ<br>
+      <input type="radio" v-model="hobby" value="映画">映画
+      <div>{{hobby}}</div>
+    </div>
+    <div>
+      <h2>select</h2>
+      <select v-model="hobby2">
+        <option disabled value="">選択してください</option>
+        <option>音楽</option>
+        <option>スポーツ</option>
+        <option>映画</option>
+      </select>
+      <div>{{hobby2}}</div>
+    </div>
+    <div>
+      <h2>select multiple</h2>
+      <select v-model="hobby3" multiple>
+        <option>音楽</option>
+        <option>スポーツ</option>
+        <option>映画</option>
+      </select>
+      <div>{{hobby3}}</div>
+    </div>
+    <div>
+      <h2>select v-for</h2>
+      <select v-model="selected" name="" id="">
+        <option disabled value="">選択してください</option>
+        <option v-for="friend in friends" :value="friend.name">{{friend.name}}</option>
+      </select>
+      <div>{{selected}}</div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        user: "text",
+        article: "textarea",
+        agree: false,
+        agree2:  [],
+        hobby: null,
+        hobby2: null,
+        hobby3: [],
+        selected: null,
+        friends: [
+          {id: 1, name: "吉田"},
+          {id: 2, name: "山田"},
+          {id: 3, name: "木村"},
+          {id: 4, name: "榎本"},
+          {id: 5, name: "青木"}
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
